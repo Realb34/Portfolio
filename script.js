@@ -257,4 +257,3 @@ window.addEventListener('scroll', () => {
     handleProjectItems();
     changeHeaderOnScroll();
 });
-
