@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riley Bellin Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Three.js 3D Module -->
+  <script type="module" crossorigin src="/assets/main-DtRZQYqv.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/three-core-Dyp1TTyn.js">
+  <link rel="modulepreload" crossorigin href="/assets/app-core-eWg5aoaj.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-CYrGi_5v.css">
+</head>
+
+<body>
+<!-- 3D Canvas Container (injected by JavaScript) -->
+<!-- Loading indicator for 3D assets -->
+<div id="three-loader" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; display: none;">
+    <div style="text-align: center; color: white; font-family: 'Montserrat', sans-serif;">
+        <div class="loader-spinner"></div>
+        <p>Loading 3D Experience...</p>
+    </div>
+</div>
+<!-- Custom Cursor -->
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
+
+<div id="initial-name">
+    <span class="gray">R</span><span class="prominent">R</span>
+    <span class="gray">i</span><span class="prominent">i</span>
+    <span class="gray">l</span><span class="prominent">l</span>
+    <span class="gray">e</span><span class="prominent">e</span>
+    <span class="gray">y</span><span class="prominent">y</span>
+    <span class="gray">B</span><span class="prominent">B</span>
+    <span class="gray">e</span><span class="prominent">e</span>
+    <span class="gray">l</span><span class="prominent">l</span>
+    <span class="gray">l</span><span class="prominent">l</span>
+    <span class="gray">i</span><span class="prominent">i</span>
+    <span class="gray">n</span><span class="prominent">n</span>
+</div>
+
+<div class="background-image">
+    <div class="container" id="intro-section">
+        <header>
+            <div class="branding">RILEY BELLIN</div>
+            <nav>
+                <ul class="navigation-menu">
+                    <li><a href="#aboutme">About Me</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="https://www.linkedin.com/in/riley-bellin-969020171/" target="_blank">LinkedIn</a></li>
+                    <li><a href="#contact">Contact Me</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1 class="hero-title">
+                <span class="hero-line">Hello World!</span>
+                <span class="hero-line gradient-text">I'm Riley.</span>
+            </h1>
+            <hr>
+            <p class="intro-text fade-in-up">A full stack software engineer.<br>I blend creativity with problem solving in my work, aiming for impactful and functional outcomes. Check out my a detailed overview of all of my personal projects below or get in touch!</p>
+            <div class="social-icons fade-in-up">
+                <a href="https://github.com/Realb34" target="_blank" class="magnetic-btn"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/riley-bellin-969020171/" target="_blank" class="magnetic-btn"><i class="fab fa-linkedin"></i></a>
+            </div>
+
+            <section class="tech-stack-section" id="aboutme">
+                <div class="line-symbol-container">
+                    <div class="unicode-symbol">✖</div>
+                    <div class="vertical-line"></div>
+                </div>
+                <h2 class="tech-stack-title">My Tech Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-item magnetic-btn"><i class="fab fa-python"></i> Python/Django</div>
+                    <div class="tech-item magnetic-btn"><i class="fas fa-code"></i> C++</div>
+                    <div class="tech-item magnetic-btn"><i class="fab fa-python"></i> Pytorch</div>
+                    <div class="tech-item magnetic-btn"><i class="fas fa-database"></i> SQL</div>
+                    <div class="tech-item magnetic-btn"><i class="fab fa-git-alt"></i> Git/Github</div>
+                    <div class="tech-item magnetic-btn"><i class="fab fa-js-square"></i> JavaScript</div>
+                    <div class="tech-item magnetic-btn"><i class="fab fa-html5"></i> HTML/CSS</div>
+                </div>
+                <div class="line-symbol-container">
+                    <div class="vertical-line"></div>
+                    <div class="unicode-symbol">✖</div>
+                </div>
+            </section>
+
+            <section id="aboutme" class="about-section reveal-section">
+                <div class="aboutme-container">
+                    <h2 class="section-heading">About Me</h2>
+                    <p>Hi, I'm Riley Bellin, a passionate and dedicated full stack developer. With an interest in building efficient and user-friendly applications, I have honed my skills in various languages, libraries and frameworks. My journey in coding began in an amazon van and a wonder of what was possible. Since then, it's become a passion and a career where I enjoy all of the messy problems and the elegant solutions.</p>
+                    <a href="#contact" class="btn magnetic-btn glow-on-hover">Contact Me</a>
+                </div>
+            </section>
+
+            <!-- Resume Section -->
+            <section id="resume" class="resume-section">
+                <div class="resume-container">
+                    <h2 class="section-title">Resume</h2>
+                    <div class="resume-content">
+                        <div class="experience-section">
+                            <h3>Professional Experience</h3>
+                            <div class="experience">
+                                <h4>Software Engineer - Internship</h4>
+                                <p class="date">April 2023 - Dec 2023</p>
+                                <ul>
+                                    <li>Using SQL queries, RESTful API integrations and automation studio- I was able to enhance the triggered sends processes that saved hours of sending emails.</li>
+                                    <li>Established and designed the syncing between SFMC and external Inventory management system.</li>
+                                    <li>Implemented an A/B testing strategy using Salesforce’s built-in analytics tools, which led to a 6 percent
+                                        increase in email conversion rates by optimizing subject lines and content.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="experience">
+                                <h4>Software Engineer Tutor</h4>
+                                <p class="date">April 2023 - Dec 2023</p>
+                                <ul>
+                                    <li>Tutored students in the fundamentals of C++,Python,andSQL as well as virtual environment setups,and OO concepts</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="education-section">
+                            <h3>Education</h3>
+                            <div class="education">
+                                <h4>Bachelor of Science in Computer Information Systems</h4>
+                                <p class="institution">Eastern Florida State - Expected Graduation 2026</p>
+                            </div>
+                        </div>
+
+                        <div class="skills-section">
+                            <h3>Technical Skills</h3>
+                            <ul class="skills-list">
+                                <li><b>Programming Languages:</b> C/C++, Python, JS(react), SQL</li>
+                                <li><b>Libraries:</b> PyTorch, OpenCV, Numpy, Matplotlib, os, shutil, glob, Django</li>
+                                <li><b>Version Control:</b> Git</li>
+                                <li><b>OS:</b> Windows, Mac</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="resume.pdf" class="btn" target="_blank">Download My Resume</a>
+                </div>
+            </section>
+
+
+            <div class="blank" id="projects">PERSONAL PROJECTS:</div>
+            <section class="project-section" style="background-image: url('https://t4.ftcdn.net/jpg/04/97/07/85/360_F_497078520_8uEI72gYipYk6iT5RZHVLajBWdQiroID.jpg');">
+                <div class="project-overlay"></div>
+                <div class="project-content">
+                    <h2 class="project-subtitle">A Background Removal Tool</h2>
+                    <h1 class="project-main-title">Machine Learning & Computer Vision Tool</h1>
+                    <p class="project-description">Detailed description of the project, its objectives, challenges, and outcomes.</p>
+                    <a href="#" class="project-cta">Currently working on this. Incomplete Case Study.</a>
+                </div>
+            </section>
+            <section class="project-section" style="background-image: url('https://img.devrant.com/devrant/rant/r_2119801_qgagh.jpg');">
+                <div class="project-overlay"></div>
+                <div class="project-content">
+                    <h2 class="project-subtitle">A File Fetching Tool</h2>
+                    <h1 class="project-main-title">Python Script: File Calling</h1>
+                    <p class="project-description">A python script that allows you to enter a keyword, and traverse a series of directories and brings that folder to the desktop.</p>
+                    <a href="#" class="project-cta">View case study.</a>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<div class="lets-connect-section" id="contact">
+    <div class="contact-container">
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h3>WORK</h3>
+                <ul>
+                    <li>Software Development</li>
+                    <li>Internships</li>
+                    <li>FullStack</li>
+                </ul>
+            </div>
+            <div class="footer-column lets-connect">
+                <h3>LET'S CONNECT</h3>
+                <p>Feel free to shoot me an email, I'd love to work with you.</p>
+                <form class="email-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Submit</button>
+                </form>
+                <div class="social-icons">
+                    <a href="https://github.com/Realb34" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/riley-bellin-969020171/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Legacy 2D animations (will coexist with 3D) -->
+</body>
+
+</html>
