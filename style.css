@@ -2,6 +2,59 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    cursor: none;
+}
+
+* {
+    cursor: none;
+}
+
+/* Custom Cursor */
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #facc15, #ff6347);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.15s ease, opacity 0.3s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(250, 204, 21, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.15s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-dot.hover,
+.cursor-outline.hover {
+    transform: scale(1.5);
+    opacity: 0.8;
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+    background: linear-gradient(135deg, #facc15 0%, #ff6347 50%, #ff1493 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 
@@ -10,8 +63,21 @@ body, html {
     background-image: url('https://static.vecteezy.com/system/resources/thumbnails/000/600/523/small/BG57.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     color: white;
     min-height: 100vh;
+    position: relative;
+}
+
+.background-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+    pointer-events: none;
 }
 
 
@@ -32,14 +98,22 @@ header {
     align-items: center;
     width: 100%;
     box-sizing: border-box;
-    background-color: #363638;
+    background-color: rgba(54, 54, 56, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
-    transition: background-color 2s;
+    transition: all 0.3s ease;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     padding: 0 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -70,6 +144,28 @@ header {
 .navigation-menu a {
     color: white;
     text-decoration: none;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.navigation-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #facc15, #ff6347);
+    transition: width 0.3s ease;
+}
+
+.navigation-menu a:hover::after {
+    width: 100%;
+}
+
+.navigation-menu a:hover {
+    color: #facc15;
 }
 
 
@@ -83,6 +179,44 @@ main h1 {
     font-weight: bold;
     text-align: left;
     margin-top: 100px;
+}
+
+/* Hero Title Animation */
+.hero-title {
+    overflow: hidden;
+}
+
+.hero-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(100px);
+    animation: slideUp 1s ease forwards;
+}
+
+.hero-line:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade in up animation */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 main hr {
@@ -134,6 +268,42 @@ social-icons a {
     margin-top: 2rem;
 }
 
+.tech-item {
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.3), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+    border-radius: 50%;
+}
+
+.tech-item:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(250, 204, 21, 0.5);
+    box-shadow: 0 10px 30px rgba(250, 204, 21, 0.3);
+}
+
 .brand-logo {
     max-width: 150px;
     margin: 0.5rem;
@@ -151,12 +321,30 @@ social-icons a {
     background-position: center;
     margin-top: 100px;
     z-index: 15;
-    transform: scale(0.9) translateY(20px); /* Unfocused state */
-    transition: transform 0.5s ease-out, z-index 0.5s ease-out, box-shadow 0.5s ease-out;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.5s ease-out, box-shadow 0.5s ease-out;
     position: relative;
-    margin-bottom: 200px; /* Added space between projects for better layering effect */
-    border-radius: 30px; /* Tab-like rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    margin-bottom: 200px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.project-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.1), rgba(255, 99, 71, 0.1));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.project-section:hover::after {
+    opacity: 1;
 }
 
 /* Responsive adjustments */
@@ -310,29 +498,130 @@ social-icons a {
     transition: transform 1s ease; /* Add transition for smooth rotation */
 }
 
+/* Section Reveal Animation */
+.reveal-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Section Heading Styles */
+.section-heading {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #facc15, #ff6347);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s ease;
+}
+
+.reveal-section.revealed .section-heading::after {
+    transform: scaleX(1);
+}
+
+/* Magnetic Button Effect */
+.magnetic-btn {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
 /* Navigation menu hover effect */
 .navigation-menu li:hover {
-    color: #ff6347; /* Example color */
+    color: #ff6347;
     transform: scale(1.1);
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
-/* Social icons pulsing effect */
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
+/* Social icons enhanced effects */
 .social-icons i {
-    animation: pulse 1.5s infinite ease-in-out;
+    font-size: 2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 }
 
-/* Project CTA hover effect */
+.social-icons a {
+    position: relative;
+    display: inline-block;
+}
+
+.social-icons a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.3), transparent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: -1;
+}
+
+.social-icons a:hover::before {
+    width: 60px;
+    height: 60px;
+}
+
+.social-icons i:hover {
+    color: #facc15;
+    transform: translateY(-5px) rotate(5deg);
+}
+
+/* Project CTA enhanced effect */
+.project-cta {
+    display: inline-block;
+    padding: 12px 30px;
+    background: rgba(255, 0, 0, 0.1);
+    border: 2px solid #ff0000;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.project-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: #ff0000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+    z-index: -1;
+}
+
+.project-cta:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
 .project-cta:hover {
-    background-color: #32cd32; /* Example background color */
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s, padding 0.3s;
+    border-color: #ff0000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
 }
 
 
@@ -396,23 +685,61 @@ social-icons a {
 
 .email-form input[type="email"] {
     flex: 1;
-    padding: 0.5rem;
+    padding: 15px 20px;
     margin-right: 1rem;
-    background: transparent;
-    border: 2px solid #374151; /* Adjust border color as needed */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
     color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.email-form input[type="email"]:focus {
+    outline: none;
+    border-color: #facc15;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
+}
+
+.email-form input[type="email"]::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .email-form button {
-    padding: 0.5rem 1rem;
-    background-color: #facc15; /* Adjust button background as needed */
-    color: #000; /* Adjust button text color as needed */
+    padding: 15px 35px;
+    background: linear-gradient(135deg, #facc15, #ff6347);
+    color: #000;
     border: none;
+    border-radius: 50px;
     cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.email-form button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.email-form button:hover::before {
+    left: 100%;
 }
 
 .email-form button:hover {
-    background-color: #eab308; /* Adjust hover background as needed */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(250, 204, 21, 0.4);
 }
 
 .social-icons {
@@ -473,16 +800,56 @@ social-icons a {
 
 .about-section .btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 15px 40px;
     background-color: #facc15;
     color: black;
-    border-radius: 5px;
+    border-radius: 50px;
     text-decoration: none;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .about-section .btn:hover {
-    background-color: #0056b3;
+    background-color: #ff6347;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(250, 204, 21, 0.4);
+}
+
+/* Glow on hover effect */
+.glow-on-hover {
+    position: relative;
+}
+
+.glow-on-hover::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #facc15, #ff6347, #ff1493, #facc15);
+    background-size: 400%;
+    border-radius: 50px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    animation: glowing 3s linear infinite;
+}
+
+.glow-on-hover:hover::before {
+    opacity: 1;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
 }
 
 /* Revised Resume Section Styles */
@@ -555,22 +922,46 @@ ul.skills-list li, .experience ul li, .education ul li {
     }
 }
 
+/* Disable custom cursor on mobile */
+@media (max-width: 1024px) {
+    body, html, * {
+        cursor: auto !important;
+    }
+
+    .cursor-dot,
+    .cursor-outline {
+        display: none;
+    }
+
+    .magnetic-btn {
+        transform: none !important;
+    }
+}
+
 /* Media Query for very small devices (max-width: 480px) */
 @media (max-width: 480px) {
     #initial-name {
-        font-size: 1rem; /* Smaller font size for very small screens */
-        left: 50%; /* Centered on the screen */
-        transform: translate(-50%, -50%); /* Adjust for center alignment */
+        font-size: 1rem;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .navigation-menu li {
-        margin-right: 0.3rem; /* Reduce spacing further for smaller screens */
+        margin-right: 0.3rem;
     }
 
-    /* Adjust header padding for smaller screens */
     header {
         padding-top: 7px;
         padding-bottom: 7px;
+    }
+
+    .hero-title {
+        font-size: 2rem !important;
+    }
+
+    .tech-item {
+        padding: 10px 20px;
+        font-size: 0.9rem;
     }
 }
 

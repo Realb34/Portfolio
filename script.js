@@ -117,8 +117,139 @@ function changeHeaderOnScroll() {
 
 
 
+// Custom Cursor
+function initCustomCursor() {
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+
+    let mouseX = 0, mouseY = 0;
+    let outlineX = 0, outlineY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        cursorDot.style.left = mouseX + 'px';
+        cursorDot.style.top = mouseY + 'px';
+    });
+
+    // Smooth follow effect for outline
+    function animateOutline() {
+        outlineX += (mouseX - outlineX) * 0.15;
+        outlineY += (mouseY - outlineY) * 0.15;
+
+        cursorOutline.style.left = outlineX + 'px';
+        cursorOutline.style.top = outlineY + 'px';
+
+        requestAnimationFrame(animateOutline);
+    }
+    animateOutline();
+
+    // Hover effects
+    const hoverElements = document.querySelectorAll('a, button, .magnetic-btn, .tech-item');
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorDot.classList.add('hover');
+            cursorOutline.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursorDot.classList.remove('hover');
+            cursorOutline.classList.remove('hover');
+        });
+    });
+}
+
+// Magnetic Button Effect
+function initMagneticButtons() {
+    const magneticBtns = document.querySelectorAll('.magnetic-btn');
+
+    magneticBtns.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+        });
+    });
+}
+
+// Reveal Sections on Scroll
+function revealSections() {
+    const sections = document.querySelectorAll('.reveal-section');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    sections.forEach(section => observer.observe(section));
+}
+
+// Enhanced Header Scroll Effect
+function enhanceHeaderScroll() {
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+}
+
+// Smooth Scroll for Navigation
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && href.length > 1) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+}
+
+// Parallax Effect for Background
+function initParallax() {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.background-image');
+
+        parallaxElements.forEach(el => {
+            const speed = 0.5;
+            el.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+    });
+}
+
 // Event Listeners
-window.onload = animateInitialName;
+window.onload = () => {
+    animateInitialName();
+    initCustomCursor();
+    initMagneticButtons();
+    revealSections();
+    enhanceHeaderScroll();
+    initSmoothScroll();
+    initParallax();
+};
 
 window.addEventListener('scroll', () => {
     handleLineSymbolContainers();
