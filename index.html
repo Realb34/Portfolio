@@ -10,9 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <!-- Three.js 3D Module -->
+    <script type="module" src="/src/main.js"></script>
 </head>
 
 <body>
+<!-- 3D Canvas Container (injected by JavaScript) -->
+<!-- Loading indicator for 3D assets -->
+<div id="three-loader" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; display: none;">
+    <div style="text-align: center; color: white; font-family: 'Montserrat', sans-serif;">
+        <div class="loader-spinner"></div>
+        <p>Loading 3D Experience...</p>
+    </div>
+</div>
 <!-- Custom Cursor -->
 <div class="cursor-dot"></div>
 <div class="cursor-outline"></div>
@@ -187,7 +197,8 @@
     </div>
 </div>
 
-<script src="script.js"></script>
+<!-- Legacy 2D animations (will coexist with 3D) -->
+<script type="module" src="/script.js"></script>
 </body>
 
 </html>
